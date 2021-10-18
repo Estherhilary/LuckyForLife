@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Lucky for Life</title>
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav_image">
+            <a href="#logo"><img src="images/Unknown.png"></a>
+        </div>
+        
+        <ul class="navbar_right">
+            <li>
+                <a href="#games">Games</a>
+            </li>
+            <li>
+                <a href="#tickets">Recent Tickets</a>
+            </li>
+            <li>
+                <a href="#tools">Tools</a>
+            </li>
+            <li>
+                <a href="#promotions">Promotions</a>
+            </li>
+        </ul>
+    </nav>
+
+    <script language='javascript'>
+        //generate five random numbers
+        n1 = Math.floor(Math.random() * (Math.floor(48)-Math.ceil(1)+1) + Math.ceil(1));
+        n2 = Math.floor(Math.random() * (Math.floor(48)-Math.ceil(1)+1) + Math.ceil(1));
+        n3 = Math.floor(Math.random() * (Math.floor(48)-Math.ceil(1)+1) + Math.ceil(1));
+        n4 = Math.floor(Math.random() * (Math.floor(48)-Math.ceil(1)+1) + Math.ceil(1));
+        n5 = Math.floor(Math.random() * (Math.floor(48)-Math.ceil(1)+1) + Math.ceil(1));
+
+        //store them in an array and sort them
+        let n = [n1, n2, n3, n4, n5];
+        n.sort(function(a, b){return a - b});
+
+        //the array as a string
+        nAsString = n1+" "+n2+" "+n3+" "+n4+" "+n5+" ";
+
+        //generate lucky ball
+        luckyBall = Math.floor(Math.random() * (Math.floor(18) - Math.ceil(1)+1) + Math.ceil(1));
+       
+        //default winning numbers in an array
+        winningNos ="20 33 38 39 40";
+        N = winningNos.split(" ");
+        
+        //prompting for winning numbers and lucky number
+        winningNumbers = prompt("Welcome! Please enter the five winning numbers:", winningNos);
+        winningLuckyNo = prompt("Now enter The Lucky Number:", 6);
+        
+    </script>
+    <div class='printResults'>
+        <script language='javascript'>
+                //compare random numbers adn winning numbers
+                document.write("Your Pick: ", nAsString, ", Lucky ", luckyBall, "<br>");
+                document.write("Winning numbers: ", winningNos, ", Lucky ", winningLuckyNo, "<br>");
+                
+                //five numbers match
+                normalMatches = 0;
+
+                for(i=0; i<5; i++) {
+                    for(j=0; j<i; j++) {
+                        if(n[i]==N[j]) {
+                            normalMatches++;
+                        }
+                    }
+                }
+                if (normalMatches == 0) {
+                    document.write("Number of Matches: 0<br>");
+                }
+                else if(normalMatches !=0){
+                    document.write("Number of Matches: ", normalMatches, "<br>");
+                }
+
+
+                //lucky ball match
+                if (luckyBall == winningLuckyNo) {
+                    document.write("Lucky ball matches<br>");
+                }
+                else if(luckyBall != winningLuckyNo){
+                    document.write("Lucky ball does not match<br>");
+                }
+                
+                //payout
+                if(normalMatches != 0){
+                    if(luckyBall == winningLuckyNo){
+                        if(normalMatches == 1) {
+                            document.write("You win $6!");
+                        }
+                        else if(normalMatches == 2) {
+                            document.write("You win $25!");
+                        }
+                        else if(normalMatches == 3) {
+                            document.write("You win $150!");
+                        }
+                        else if(normalMatches == 4) {
+                            document.write("You win $5000!");
+                        }
+                        else if(normalMatches == 5) {
+                            document.write("You win $7000 a week FOR LIFE!");
+                        }
+                    }
+                    else if(luckyBall != winningLuckyNo){
+                        if(normalMatches == 1) {
+                            document.write("You win $0");
+                        }
+                        if(normalMatches == 2) {
+                            document.write("You win $3!");
+                        }
+                        else if(normalMatches == 3) {
+                            document.write("You win $20!");
+                        }
+                        else if(normalMatches == 4) {
+                            document.write("You win $200!");
+                        }
+                        else if(normalMatches == 5) {
+                            document.write("You win $25000 A YEAR FOR LIFE!");
+                        }
+                    }
+                    
+                } 
+                else if(normalMatches == 0 && luckyBall == winningLuckyNo) {
+                    document.write("You win $4!");
+                }
+                else{
+                    document.write("You win $0 <br>");
+                }
+        </script>
+        <button type="button"><a href="index.html">Try Again</a></button>
+    </div>
+</body>
+
+</html>
